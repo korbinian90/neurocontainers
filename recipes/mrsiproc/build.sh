@@ -110,6 +110,8 @@ neurodocker generate ${neurodocker_buildMode} \
    --run="pip install -e ." \
    --env DEPLOY_BINS=hd-bet \
    --dcm2niix method=source version=003f0d19f1e57b0129c9dcf3e653f51ca3559028 `# copied from qsmxt` \
+   --copy ./init_mlicense.sh /opt/mrsiproc/ \
+   --add-to-entrypoint /opt/mrsiproc/init_mlicense.sh `# checks for the matlab license` \
   > ${imageName}.${neurodocker_buildExt}                `# LAST COMMENT; NOT FOLLOWED BY BACKSLASH!`
 
 ## To add in future version

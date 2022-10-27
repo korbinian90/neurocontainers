@@ -59,8 +59,9 @@ To run applications outside of this container
   
   In case this doesn't work (container not published yet) you can build the container with:
   ```bash
-  bash /neurocommand/local/fetch_and_run.sh mrsiproc 0.0.1 20221024
+  bash /neurocommand/local/fetch_and_run.sh mrsiproc 0.0.1 20221026
   ```
+  The newest version of this command is printed after the most recent successful container build (https://github.com/NeuroDesk/neurocontainers/actions/workflows/mrsiproc.yml)
 
 Citation
 --------
