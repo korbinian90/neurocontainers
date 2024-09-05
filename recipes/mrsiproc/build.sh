@@ -110,7 +110,8 @@ neurodocker generate ${neurodocker_buildMode} \
    --workdir /opt `# Add freesurfer` \
    --install language-pack-en gettext xterm x11-apps csh tcsh xorg xorg-dev xserver-xorg-video-intel libwayland-cursor0 \
    --run="wget --quiet https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/${freesurferVersion}/freesurfer_ubuntu20-${freesurferVersion}_amd64.deb \
-            && dpkg -i freesurfer_ubuntu20-${freesurferVersion}_amd64.deb" \
+            && dpkg -i freesurfer_ubuntu20-${freesurferVersion}_amd64.deb \
+            && rm -f freesurfer_ubuntu20-${freesurferVersion}_amd64.deb" \
    --env PATH="\${PATH}:/usr/local/freesurfer/${freesurferVersion}-1" \
    \
    --workdir /opt `# Add MRSI pipeline scripts` \
