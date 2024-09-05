@@ -12,8 +12,8 @@ export hdbetVersion='1.0' # note the hdbet doesn't really have a version
 export fslVersion='6.0.7.1' # build on ubuntu 20.04
 export minicondaVersion='latest'
 export dcm2niixVersion='003f0d19f1e57b0129c9dcf3e653f51ca3559028' # copied from qsmxt
-export juliaVersion='1.10.4'
 export freesurferVersion='7.4.1'
+export mrsi_pipeline_version='7090915b7d99cb503e8b0685d5e0c78dc242caf3'
 
 # Don't forget to update version change in README.md!!!!!
 # toolName or toolVersion CANNOT contain capital letters or dashes or underscores (Docker registry does not accept this!)
@@ -106,16 +106,6 @@ neurodocker generate ${neurodocker_buildMode} \
           rm -f MATLAB_Runtime_R${matlabVersion}_Update_${matlabUpdateVersion}_glnxa64.zip" \
    \
    --env LD_LIBRARY_PATH="\${LD_LIBRARY_PATH}:/opt/MATLAB_Runtime_R${matlabVersion}/R${matlabVersion}/runtime/glnxa64:/opt/MATLAB_Runtime_R${matlabVersion}/R${matlabVersion}/bin/glnxa64:/opt/MATLAB_Runtime_R${matlabVersion}/R${matlabVersion}/sys/os/glnxa64:/opt/MATLAB_Runtime_R${matlabVersion}/R${matlabVersion}/extern/bin/glnxa64" \
-   --workdir /opt `# Add Julia with MRSI packages` \
-   --run="wget https://julialang-s3.julialang.org/bin/linux/x64/${juliaVersion:0:4}/julia-${juliaVersion}-linux-x86_64.tar.gz && \
-      tar zxvf julia-${juliaVersion}-linux-x86_64.tar.gz && \
-      rm -rf julia-${juliaVersion}-linux-x86_64.tar.gz" \
-   --env PATH="\${PATH}:/opt/julia-${juliaVersion}/bin" \
-   --copy install_packages.jl "/opt" \
-   --env JULIA_DEPOT_PATH="/opt/julia_depot" \
-   --run="julia install_packages.jl \
-      && chmod -R 755 /opt/julia_depot/packages/MRSI" \
-   --env JULIA_DEPOT_PATH="~/.julia:/opt/julia_depot" \
    \
    --workdir /opt `# Add freesurfer` \
    --install language-pack-en gettext xterm x11-apps csh tcsh xorg xorg-dev xserver-xorg-video-intel libwayland-cursor0 \
@@ -127,7 +117,7 @@ neurodocker generate ${neurodocker_buildMode} \
    --install parallel \
    --run="git clone https://github.com/korbinian90/mrsi_pipeline_neurodesk.git && \
       cd mrsi_pipeline_neurodesk && \
-      git checkout 02ed0178bf2d7be3ec0406fee92333ae86de377d" \
+      git checkout ${mrsi_pipeline_version}" \
    --env PATH="\${PATH}:/opt/mrsi_pipeline_neurodesk/Part1:/opt/mrsi_pipeline_neurodesk/Part2" \
    --copy update_mrsi.sh /opt/mrsi_pipeline_neurodesk \
    --run="chmod a+x /opt/mrsi_pipeline_neurodesk/update_mrsi.sh" \

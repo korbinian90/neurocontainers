@@ -1,6 +1,6 @@
 
 ----------------------------------
-## mrsiproc/0.1.0 ##
+## mrsiproc/0.2.0 ##
 
 Includes the following:  
 ##### -- OS: Ubuntu 20.04 (Built from fsl neurodocker)
@@ -19,7 +19,7 @@ The MRSI reconstruction algorithms and scripts were created by the Wolfgang Bogn
 
 To run applications outside of this container
 ---------------------------------------------
-  ml mrsiproc/0.1.0
+  ml mrsiproc/0.2.0
 
 
 Run MRSI scripts
